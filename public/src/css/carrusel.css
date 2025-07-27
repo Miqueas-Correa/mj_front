@@ -1,9 +1,7 @@
 /* Variables de colores */
 :root {
-    --primary-blue: #2e3b80;
     --secondary-blue: #3f497f;
     --hover-blue: #004a90b6;
-    --background: #fffffc;
     --white: #ffffff;
 }
 
@@ -49,11 +47,4 @@
 
 .carrusel-btn.next {
   right: 0.5rem;
-}
-
-/* seccion novedades */
-.section-novedades {
-  margin: 1rem;
-  display: flex;
-  flex-wrap: wrap;
 }

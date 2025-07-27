@@ -15,7 +15,7 @@ body {
 /* main */
 main.container {
   /* le da espacio a la barra de navegacion */
-  margin-top: 140px;
+  margin-top: 145px;
 }
 
 /* Product Styles */
@@ -50,4 +50,11 @@ main.container {
 .product-info {
   padding: 0.5rem;
   text-align: center;
+}
+
+/* seccion productos */
+.section-productos {
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }
