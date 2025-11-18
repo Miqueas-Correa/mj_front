@@ -1,0 +1,17 @@
+.header {
+  background: #eee;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #333;
+}
+
+.nav a:hover {
+  color: #000;
+}
