@@ -1,0 +1,11 @@
+/* Footer Styles */
+footer {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 1rem;
+    text-align: center;
+}
+
+footer a {
+    color: var(--white);
+}

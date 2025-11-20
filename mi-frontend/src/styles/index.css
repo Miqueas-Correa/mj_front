@@ -1,0 +1,76 @@
+:root {
+  --primary-color: #4f8cff;        /* Botones principales, enlaces destacados */
+  --secondary-color: #1a1a1a;      /* Botones secundarios, iconos */
+  --accent-color: #ff5e62;         /* Llamados a la acción, badges */
+  --background-color: #f7f9fa;     /* Fondo general */
+  --surface-color: #ffffff;        /* Tarjetas, modales, menús */
+  --text-color: #222b45;           /* Texto principal */
+  --text-secondary: #6b7280;       /* Texto secundario, descripciones */
+  --border-color: #e5e7eb;         /* Bordes, divisores */
+  --success-color: #22c55e;        /* Mensajes de éxito */
+  --error-color: #ef4444;          /* Mensajes de error */
+  --warning-color: #f59e42;        /* Advertencias */
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;     /* Tipografía base */
+  line-height: 1.5;                                                 /* Altura de línea legible */
+  font-weight: 400;                                                 /* Peso de fuente normal */
+
+
+  font-synthesis: none;                         /* Mejoras tipográficas */
+  text-rendering: optimizeLegibility;           /* Mejoras tipográficas */
+  -webkit-font-smoothing: antialiased;          /* Mejoras tipográficas */
+  -moz-osx-font-smoothing: grayscale;           /* Mejoras tipográficas */
+}
+
+/*
+Recomendaciones de uso:
+- --primary-color: botones principales, enlaces destacados, header.
+- --secondary-color: botones secundarios, iconos, hover de elementos.
+- --accent-color: llamados a la acción, etiquetas de oferta, badges.
+- --background-color: fondo general de la página.
+- --surface-color: tarjetas de producto, menús, modales.
+- --text-color: texto principal.
+- --text-secondary: descripciones, texto menos importante.
+- --border-color: bordes de tarjetas, inputs, divisores.
+- --success-color, --error-color, --warning-color: mensajes de feedback.
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+a {
+  margin-left: 1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--text-secondary);
+}
+
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.4rem 1rem;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
