@@ -1,37 +1,96 @@
 import { useState } from "react";
-import styles from "../styles/Header.module.css";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  InputBase,
+  IconButton,
+  Menu
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import Categories from "./Categories.jsx";
 
-function Header() {
-  const [openCategories, setOpenCategories] = useState(false);
+export default function Header() {
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  const toggleCategories = () => {
-    setOpenCategories((prev) => !prev);
+  const handleCategoriesClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
     <>
-      <header className={styles.header}>
-        <h1>MJ STORE</h1>
+      <AppBar position="fixed" color="primary">
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography variant="h6">MJ STORE</Typography>
 
-        <div className={styles.search}>
-          <input type="text" placeholder="Buscar..." />
-          <button type="submit">Buscar</button>
-        </div>
+          {/* BUSCADOR */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              bgcolor: "background.paper",
+              borderRadius: 1,
+              px: 1,
+            }}
+          >
+            <InputBase placeholder="Buscar..." sx={{ ml: 1, flex: 1 }} />
+            <IconButton type="submit">
+              <SearchIcon />
+            </IconButton>
+          </Box>
 
-        <nav className={styles.nav}>
-          <a href="/">Inicio</a>
-          <a onClick={toggleCategories}>Categorías</a>
-          <a href="/ofertas">Ofertas</a>
-          <a href="/contacto">Contacto</a>
-          <a href="/perfil">Perfil</a>
-          <a href="/carrito">Carrito</a>
-        </nav>
-      </header>
+          {/* NAV */}
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <Typography component="a" href="/" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
+              Inicio
+            </Typography>
 
-      {openCategories && <Categories onClose={() => setOpenCategories(false)} />}
+            <Typography
+              onClick={handleCategoriesClick}
+              sx={{ color: "white", cursor: "pointer" }}
+            >
+              Categorías
+            </Typography>
+
+            <Typography component="a" href="/ofertas" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
+              Ofertas
+            </Typography>
+            <Typography component="a" href="/contacto" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
+              Contacto
+            </Typography>
+            <Typography component="a" href="/perfil" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
+              Perfil
+            </Typography>
+            <Typography component="a" href="/carrito" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
+              Carrito
+            </Typography>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      {/* MENU DE CATEGORÍAS */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        {/* Categories.jsx se encarga SOLO del contenido */}
+        <Categories onClose={handleClose} />
+      </Menu>
     </>
   );
 }
-
-export default Header;

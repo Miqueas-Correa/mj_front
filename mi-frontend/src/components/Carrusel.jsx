@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import ProductCard from "./ProductCard";
-import "../styles/carrusel.module.css";
+import styles from "../styles/carrusel.module.css";
 
 function Carrusel({ productos }) {
   const carruselRef = useRef(); // Referencia al contenedor del carrusel
@@ -14,7 +14,7 @@ function Carrusel({ productos }) {
   };
 
   return (
-    <div className="carrusel-holder">
+    <div className={styles.holder}>
       <button onClick={() => scroll(-1)} className="btn-prev">←</button>
       <button onClick={() => scroll(1)} className="btn-next">→</button>
 
