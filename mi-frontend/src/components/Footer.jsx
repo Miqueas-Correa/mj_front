@@ -1,11 +1,22 @@
-import "../styles/footer.module.css";
+import { Box, Link } from "@mui/material";
 
-function Footer() {
+export default function Footer() {
   return (
-    <footer className="footer">
-      <p>MJ Store © {new Date().getFullYear()}</p>
-    </footer>
+    <Box
+      component="footer"
+      sx={{
+        bgcolor: "primary.main",
+        color: "white",
+        textAlign: "center",
+        p: 2,
+      }}
+    >
+      <p>
+        &copy; 2025 M.J-Tienda Online - Todos los derechos reservados -{" "}
+        <Link href="https://portafolio-web-miqueas.vercel.app/#inicio" color="inherit">
+          Programador Correa Miqueas ✔
+        </Link>
+      </p>
+    </Box>
   );
 }
-
-export default Footer;
