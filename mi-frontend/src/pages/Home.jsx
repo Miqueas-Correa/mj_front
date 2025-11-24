@@ -8,7 +8,7 @@ function Home() {
 
   return (
     <main>
-      <h2>Productos Destacados</h2>
+      <h2>Productos Nuevos</h2>
       <Carrusel productos={productos} />
     </main>
   );
