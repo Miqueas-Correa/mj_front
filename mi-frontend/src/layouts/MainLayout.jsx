@@ -1,11 +1,11 @@
-import Header from "../components/header/Header.jsx";
-import Footer from "../components/footer/Footer.jsx";
+import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
 
 function MainLayout({ children }) {
   return (
     <>
       <Header />
-      <main className="container">
+      <main style={{ marginTop: "80px" }}>
         {children}
       </main>
       <Footer />

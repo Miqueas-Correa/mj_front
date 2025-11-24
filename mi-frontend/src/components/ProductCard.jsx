@@ -1,4 +1,3 @@
-import "../styles/producto.module.css";
 
 function ProductCard({ producto }) {
   return (

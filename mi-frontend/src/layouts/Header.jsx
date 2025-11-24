@@ -9,7 +9,7 @@ import {
   Menu
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import Categories from "./Categories.jsx";
+import Categories from "../components/Categories.jsx";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
