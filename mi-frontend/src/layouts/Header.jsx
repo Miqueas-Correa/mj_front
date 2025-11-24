@@ -61,7 +61,7 @@ export default function Header() {
             <Typography component="a" href="/ofertas" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
               Ofertas
             </Typography>
-            <Typography component="a" href="/contacto" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
+            <Typography component="a" href="#footer" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
               Contacto
             </Typography>
             <Typography component="a" href="/perfil" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
