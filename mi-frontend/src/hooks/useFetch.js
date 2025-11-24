@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import client from "../api/client";
+import client from "../services/client";
 
 export function useFetch(url, deps = []) {
   const [data, setData] = useState(null);
