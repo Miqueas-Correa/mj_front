@@ -1,10 +1,11 @@
 import Home from "./pages/Home";
 import MainLayout from "./layouts/MainLayout.jsx";
-import ProductList from "./components/ProductList.jsx";
+// import ProductList from "./components/ProductList.jsx";
 
 function App() {
   return (
     <>
+      {/* <ProductList /> */}
       <MainLayout>
         <Home />
       </MainLayout>

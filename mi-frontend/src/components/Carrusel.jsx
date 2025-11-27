@@ -1,29 +1,24 @@
-import { useRef } from "react";
+import { useProductos } from "../hooks/useProductos";
 import ProductCard from "./ProductCard";
+import { Grid } from "@mui/material";
 
-function Carrusel({ productos }) {
-  const carruselRef = useRef(); // Referencia al contenedor del carrusel
+export default function Carrusel() {
+  const { data, isLoading, isError, error } = useProductos(true);
 
-  const scroll = (direction) => {
-    const amount = 260;  // Ancho aproximado de una tarjeta de producto más margen
-    carruselRef.current.scrollBy({
-      left: amount * direction,
-      behavior: "smooth",
-    });
-  };
+  if (isLoading) return <p>Cargando productos...</p>;
+  if (isError) return <p>Error: {error?.message}</p>;
 
+  if (!Array.isArray(data) || data.length === 0)
+    return <p>No hay productos.</p>;
+
+ // el id lo pongo porque react lo necesitas
   return (
-    <div>
-      <button onClick={() => scroll(-1)} className="btn-prev">←</button>
-      <button onClick={() => scroll(1)} className="btn-next">→</button>
-
-      <section className="carrusel" ref={carruselRef}>
-        {productos.map((p) => (
+    <Grid container spacing={3} sx={{ p: 2 }}>
+      {data.map((p) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={p.id}>
           <ProductCard key={p.id} producto={p} />
-        ))}
-      </section>
-    </div>
+        </Grid>
+      ))}
+    </Grid>
   );
 }
-
-export default Carrusel;
