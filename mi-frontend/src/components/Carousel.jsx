@@ -2,7 +2,7 @@ import { useProductos } from "../hooks/useProductos";
 import ProductCard from "./ProductCard";
 import { Grid } from "@mui/material";
 
-export default function Carrusel() {
+export default function Carousel() {
   const { data, isLoading, isError, error } = useProductos(true);
 
   if (isLoading) return <p>Cargando productos...</p>;

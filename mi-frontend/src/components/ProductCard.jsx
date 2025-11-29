@@ -25,7 +25,7 @@ function ProductCard({ producto }) {
     >
       <CardMedia
         component="img"
-        height="180"
+        height="120"
         image={producto.imagen_url || "https://via.placeholder.com/200"}
         alt={producto.nombre}
         sx={{ objectFit: "contain", p: 1, background: "primary.main" }}
