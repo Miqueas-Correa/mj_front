@@ -2,8 +2,8 @@ import { useProductos } from "../hooks/useProductos";
 import ProductCard from "./ProductCard";
 import { Grid } from "@mui/material";
 
-export default function Carousel() {
-  const { data, isLoading, isError, error } = useProductos(true, "");
+export default function Featured() {
+  const { data, isLoading, isError, error } = useProductos(true, "/destacado");
 
   if (isLoading) return <p>Cargando productos...</p>;
   if (isError) return <p>Error: {error?.message}</p>;
