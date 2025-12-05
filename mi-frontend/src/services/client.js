@@ -18,4 +18,12 @@ client.interceptors.request.use((config) => {
   return config;
 }, (err) => Promise.reject(err));
 
+export function setAuthToken(token) {
+  if (token) {
+    localStorage.setItem("auth_token", token);
+  } else {
+    localStorage.removeItem("auth_token");
+  }
+}
+
 export default client;

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Categories from "../components/Categories.jsx";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -47,7 +48,7 @@ export default function Header() {
 
           {/* NAV */}
           <Box sx={{ display: "flex", gap: 2 }}>
-            <Typography component="a" href="/" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
+            <Typography component={RouterLink} to="/" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
               Inicio
             </Typography>
 
@@ -58,16 +59,16 @@ export default function Header() {
               Categorías
             </Typography>
 
-            <Typography component="a" href="/ofertas" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
+            <Typography component={RouterLink} to="/ofertas" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
               Ofertas
             </Typography>
-            <Typography component="a" href="#footer" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
+            <Typography component={RouterLink} to="#footer" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
               Contacto
             </Typography>
-            <Typography component="a" href="/perfil" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
+            <Typography component={RouterLink} to="/perfil" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
               Perfil
             </Typography>
-            <Typography component="a" href="/carrito" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
+            <Typography component={RouterLink} to="/carrito" sx={{ color: "white", cursor: "pointer", textDecoration: "none" }}>
               Carrito
             </Typography>
           </Box>
