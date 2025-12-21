@@ -4,8 +4,11 @@ import { useAuth } from "../hooks/useAuth";
 export default function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
 
-  if (loading) return null; // o spinner
-  if (!user) return <Navigate to="/login" replace />;
+  if (loading) return <p>Cargando...</p>;
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
 
   return children;
 }

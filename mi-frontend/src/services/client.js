@@ -1,29 +1,57 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
-
 const client = axios.create({
-  baseURL,
-  timeout: 10000,
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: true // cookies httpOnly
+  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
 });
 
-// Interceptor simple para agregar Authorization si hay token en localStorage
-client.interceptors.request.use((config) => {
-  const token = localStorage.getItem("auth_token");
-  if (token) config.headers.Authorization = `Bearer ${token}`;
-  return config;
-}, (err) => Promise.reject(err));
-
-export function setAuthToken(token) {
+export const setAuthToken = (token) => {
   if (token) {
-    localStorage.setItem("auth_token", token);
+    client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   } else {
-    localStorage.removeItem("auth_token");
+    delete client.defaults.headers.common["Authorization"];
   }
-}
+};
+
+client.interceptors.response.use(
+  res => res,
+  async error => {
+    const originalRequest = error.config;
+
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry
+    ) {
+      originalRequest._retry = true;
+
+      try {
+        const refresh = localStorage.getItem("refresh");
+
+        const res = await axios.post(
+          "http://localhost:5000/auth/refresh",
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${refresh}`,
+            },
+          }
+        );
+
+        const { token } = res.data;
+
+        localStorage.setItem("token", token);
+        setAuthToken(token);
+
+        originalRequest.headers.Authorization = `Bearer ${token}`;
+
+        return client(originalRequest);
+      } catch {
+        localStorage.clear();
+        window.location.href = "/login";
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 export default client;
