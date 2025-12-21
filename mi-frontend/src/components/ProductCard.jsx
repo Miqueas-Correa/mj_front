@@ -4,8 +4,7 @@ import {
   CardContent,
   CardActions,
   Typography,
-  Button,
-  Box
+  Button
 } from "@mui/material";
 
 function ProductCard({ producto }) {
