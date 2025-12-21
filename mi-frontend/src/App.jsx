@@ -17,11 +17,7 @@ function App() {
     <>
       <MainLayout>
         <Routes>
-          <Route path="/" element={
-            <PublicRoute>
-              <Home />
-            </PublicRoute>
-          } />
+          <Route path="/" element={<Home />} />
           {/* APARTADO PARA PERFIL */}
           <Route
             path="/perfil"

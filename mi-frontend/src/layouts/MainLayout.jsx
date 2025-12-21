@@ -5,7 +5,7 @@ function MainLayout({ children }) {
   return (
     <>
       <Header />
-      <main style={{ marginTop: "80px" }}>
+      <main style={{ marginTop: "10px" }}>
         {children}
       </main>
       <Footer />
