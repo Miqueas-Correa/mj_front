@@ -50,6 +50,9 @@ function ProductCard({ producto }) {
           <Button size="small" variant="contained" fullWidth>
             Ver más
           </Button>
+          <Button size="small" variant="outlined" fullWidth>
+            Añadir
+          </Button>
         </CardActions>
       </CardContent>
     </Card>

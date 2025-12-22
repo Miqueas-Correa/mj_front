@@ -11,6 +11,8 @@ import Register from "./pages/Register";
 import EditProfile from "./pages/EditProfile";
 // PILITICA DE DATOS
 import Politica from "./pages/PoliticaDatos";
+// CATEGORIAS
+import Category from "./pages/Categories";
 
 function App() {
   return (
@@ -48,6 +50,10 @@ function App() {
             <PublicRoute>
               <Politica />
             </PublicRoute>
+          } />
+          {/* CATEGORIAS */}
+          <Route path="/categoria/:categoria" element={
+            <Category />
           } />
         </Routes>
         <ScrollTopButton/>
