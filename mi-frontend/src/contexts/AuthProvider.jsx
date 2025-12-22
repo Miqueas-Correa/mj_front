@@ -6,7 +6,6 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔐 LOGIN
   const login = async (email, contrasenia) => {
     const res = await client.post("/auth/login", {
       email,
@@ -41,7 +40,6 @@ export default function AuthProvider({ children }) {
     }
   };
 
-  // 🔄 PERSISTENCIA
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -62,8 +60,12 @@ export default function AuthProvider({ children }) {
     setLoading(false);
   };
 
+  const reloadUser = async () => {
+    await loadUser();
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, reloadUser }}>
       {!loading && children}
     </AuthContext.Provider>
   );

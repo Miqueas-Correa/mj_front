@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Box,
   Card,
@@ -8,7 +8,6 @@ import {
   Stack,
   TextField,
   Alert,
-  CircularProgress,
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
@@ -17,17 +16,19 @@ import { useNavigate } from "react-router-dom";
 import client from "../services/client";
 
 export default function EditProfile() {
-  const { user, logout } = useAuth();
+  const { user, logout, reloadUser } = useAuth();
   const navigate = useNavigate();
 
+  // Estados del formulario - inicializar con datos del usuario
   const [formData, setFormData] = useState({
-    nombre: "",
-    email: "",
-    telefono: "",
+    nombre: user?.nombre || "",
+    email: user?.email || "",
+    telefono: user?.telefono || "",
     contrasenia: "",
     confirmarContrasenia: "",
   });
 
+  // Estados para controlar qué campos se van a modificar
   const [fieldsToEdit, setFieldsToEdit] = useState({
     nombre: false,
     email: false,
@@ -35,29 +36,20 @@ export default function EditProfile() {
     contrasenia: false,
   });
 
+  // Estados de UI
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    if (user) {
-      setFormData({
-        nombre: user.nombre || "",
-        email: user.email || "",
-        telefono: user.telefono || "",
-        contrasenia: "",
-        confirmarContrasenia: "",
-      });
-    }
-  }, [user]);
-
+  // Manejar cambios en los checkboxes
   const handleCheckboxChange = (field) => {
     setFieldsToEdit((prev) => ({
       ...prev,
       [field]: !prev[field],
     }));
 
+    // Limpiar errores del campo
     if (errors[field]) {
       setErrors((prev) => ({
         ...prev,
@@ -65,6 +57,7 @@ export default function EditProfile() {
       }));
     }
 
+    // Si desmarca contraseña, limpiar los campos
     if (field === "contrasenia" && fieldsToEdit.contrasenia) {
       setFormData((prev) => ({
         ...prev,
@@ -74,6 +67,7 @@ export default function EditProfile() {
     }
   };
 
+  // Manejar cambios en los inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -81,6 +75,7 @@ export default function EditProfile() {
       [name]: value,
     }));
 
+    // Limpiar error del campo al escribir
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -89,9 +84,11 @@ export default function EditProfile() {
     }
   };
 
+  // Validaciones del cliente
   const validateForm = () => {
     const newErrors = {};
 
+    // Validar nombre solo si está marcado para editar
     if (fieldsToEdit.nombre) {
       if (!formData.nombre.trim()) {
         newErrors.nombre = "El nombre no puede estar vacío";
@@ -100,6 +97,7 @@ export default function EditProfile() {
       }
     }
 
+    // Validar email solo si está marcado para editar
     if (fieldsToEdit.email) {
       if (!formData.email.trim()) {
         newErrors.email = "El email no puede estar vacío";
@@ -108,6 +106,7 @@ export default function EditProfile() {
       }
     }
 
+    // Validar teléfono solo si está marcado para editar
     if (fieldsToEdit.telefono) {
       if (!formData.telefono.trim()) {
         newErrors.telefono = "El teléfono no puede estar vacío";
@@ -116,6 +115,7 @@ export default function EditProfile() {
       }
     }
 
+    // Validar contraseña solo si está marcada para editar
     if (fieldsToEdit.contrasenia) {
       if (!formData.contrasenia) {
         newErrors.contrasenia = "Debes ingresar una nueva contraseña";
@@ -132,6 +132,7 @@ export default function EditProfile() {
     return Object.keys(newErrors).length === 0;
   };
 
+  // Obtener campos a enviar
   const getDataToSend = () => {
     const dataToSend = {};
 
@@ -154,11 +155,15 @@ export default function EditProfile() {
     return dataToSend;
   };
 
+  // Manejar envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Limpiar mensajes anteriores
     setError("");
     setSuccess("");
 
+    // Verificar si hay al menos un campo seleccionado
     const hasSelectedFields = Object.values(fieldsToEdit).some((value) => value);
 
     if (!hasSelectedFields) {
@@ -166,51 +171,74 @@ export default function EditProfile() {
       return;
     }
 
+    // Validar campos seleccionados
     if (!validateForm()) {
       return;
     }
 
     setLoading(true);
 
-    try {
-      const dataToSend = getDataToSend();
+    // Obtener solo los datos de los campos seleccionados
+    const dataToSend = getDataToSend();
 
-      await client.put("/usuarios/me", dataToSend);
+    try {
+      // Enviar petición al backend
+      const response = await client.put("/usuarios/me", dataToSend);
 
       const fieldsCount = Object.keys(dataToSend).length;
       const fieldsNames = Object.keys(dataToSend).join(", ");
 
+      // Recargar datos del usuario si la función existe
+      if (reloadUser) {
+        try {
+          await reloadUser();
+        } catch (reloadErr) {
+          console.warn("No se pudo recargar el usuario:", reloadErr);
+        }
+      }
+
+      // Esperar un tick para que React termine de procesar
+      await new Promise(resolve => setTimeout(resolve, 0));
+      
+      setLoading(false);
       setSuccess(
         `¡Perfil actualizado exitosamente! Se ${
           fieldsCount === 1 ? "actualizó" : "actualizaron"
         } ${fieldsCount} campo(s): ${fieldsNames}`
       );
 
-      // Redirigir al perfil después de 1.5 segundos
+      // Redirigir después de mostrar el mensaje
       setTimeout(() => {
         navigate("/perfil", { replace: true });
       }, 1500);
-    } catch (err) {
-      console.error("Error al actualizar perfil:", err);
 
-      if (err.response?.data?.error) {
-        setError(err.response.data.error);
-      } else if (err.response?.data?.message) {
-        setError(err.response.data.message);
-      } else if (err.response?.status === 401) {
+    } catch (err) {
+      setLoading(false);
+
+      // Manejar diferentes tipos de errores
+      if (err.response?.status === 401) {
         setError("Sesión expirada. Por favor, inicia sesión nuevamente.");
         setTimeout(() => {
           logout();
           navigate("/login");
         }, 2000);
+      } else if (err.response?.status === 400) {
+        // Error de validación del backend
+        const errorMsg = err.response.data?.error || err.response.data?.message;
+        setError(errorMsg || "Error de validación. Verifica los datos ingresados.");
+      } else if (err.response?.data?.error) {
+        setError(err.response.data.error);
+      } else if (err.response?.data?.message) {
+        setError(err.response.data.message);
+      } else if (err.message) {
+        setError(`Error: ${err.message}`);
       } else {
         setError("Error al actualizar el perfil. Intenta nuevamente.");
       }
-    } finally {
-      setLoading(false);
     }
   };
 
+  // Manejar cancelación
   const handleCancel = () => {
     navigate("/perfil");
   };
@@ -234,6 +262,7 @@ export default function EditProfile() {
             Selecciona los campos que deseas modificar
           </Typography>
 
+          {/* Mensajes de éxito/error */}
           {success && (
             <Alert severity="success" sx={{ mb: 2 }}>
               {success}
@@ -248,6 +277,7 @@ export default function EditProfile() {
 
           <form onSubmit={handleSubmit}>
             <Stack spacing={3}>
+              {/* Campo Nombre */}
               <Box>
                 <FormControlLabel
                   control={
@@ -276,6 +306,7 @@ export default function EditProfile() {
                 />
               </Box>
 
+              {/* Campo Email */}
               <Box>
                 <FormControlLabel
                   control={
@@ -305,6 +336,7 @@ export default function EditProfile() {
                 />
               </Box>
 
+              {/* Campo Teléfono */}
               <Box>
                 <FormControlLabel
                   control={
@@ -336,6 +368,7 @@ export default function EditProfile() {
                 />
               </Box>
 
+              {/* Campo Contraseña */}
               <Box>
                 <FormControlLabel
                   control={
@@ -386,23 +419,8 @@ export default function EditProfile() {
                   variant="contained"
                   fullWidth
                   disabled={loading}
-                  sx={{ position: "relative" }}
                 >
-                  {loading ? (
-                    <>
-                      <CircularProgress
-                        size={24}
-                        sx={{
-                          position: "absolute",
-                          left: "50%",
-                          marginLeft: "-12px",
-                        }}
-                      />
-                      Guardando...
-                    </>
-                  ) : (
-                    "Guardar cambios"
-                  )}
+                  {loading ? "Guardando..." : "Guardar cambios"}
                 </Button>
 
                 <Button
