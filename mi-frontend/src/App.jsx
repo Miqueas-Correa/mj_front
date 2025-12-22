@@ -13,6 +13,8 @@ import EditProfile from "./pages/EditProfile";
 import Politica from "./pages/PoliticaDatos";
 // CATEGORIAS
 import Category from "./pages/Categories";
+// PRODUCTOS DETALLE
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   return (
@@ -54,6 +56,10 @@ function App() {
           {/* CATEGORIAS */}
           <Route path="/categoria/:categoria" element={
             <Category />
+          } />
+          {/* PRODUCTOS DETALLE */}
+          <Route path="/producto/:id" element={
+            <ProductDetail />
           } />
         </Routes>
         <ScrollTopButton/>

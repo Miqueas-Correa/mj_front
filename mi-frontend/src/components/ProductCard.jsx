@@ -6,8 +6,10 @@ import {
   Typography,
   Button
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function ProductCard({ producto }) {
+  const navigate = useNavigate();
   if (!producto) return null;
   return (
     <Card
@@ -47,8 +49,9 @@ function ProductCard({ producto }) {
         </Typography>
 
         <CardActions>
-          <Button size="small" variant="contained" fullWidth>
-            Ver más
+          <Button size="small" variant="contained" fullWidth
+            onClick={() => navigate(`/producto/${producto.id}`)}>
+            Ver
           </Button>
           <Button size="small" variant="outlined" fullWidth>
             Añadir
