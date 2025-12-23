@@ -13,10 +13,9 @@ function capitalize(str = "") {
     .join(" ");
 }
 
-export default function Category() {  // ← Nombre correcto para que coincida con el import
+export default function Category() {
   const { categoria } = useParams();
   const cat = decodeURIComponent(categoria || "");
-  
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -28,9 +27,8 @@ export default function Category() {  // ← Nombre correcto para que coincida c
     const fetchProductos = async () => {
       setLoading(true);
       setError("");
-      
+
       try {
-        // Endpoint del backend - ajusta según tu API
         const res = await client.get(`/productos/categoria/${encodeURIComponent(cat)}`);
 
         // Maneja diferentes formatos de respuesta del backend

@@ -14,7 +14,7 @@ function ProductCard({ producto }) {
   return (
     <Card
       sx={{
-        maxWidth: 320,
+        maxWidth: 220,
         borderRadius: 3,
         boxShadow: 3,
         transition: "0.2s",
