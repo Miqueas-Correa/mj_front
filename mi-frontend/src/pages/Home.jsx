@@ -1,5 +1,5 @@
 import Carousel from "../components/Carousel.jsx";
-import Featured from "../components/Featured.jsx";
+import Products from "../components/Products.jsx";
 
 function Home() {
 
@@ -7,8 +7,8 @@ function Home() {
     <main>
       <h2>Productos Nuevos</h2>
       <Carousel/>
-      <h2>Destacados</h2>
-      <Featured/>
+      <h2>Todo</h2>
+      <Products/>
     </main>
   );
 }

@@ -29,7 +29,7 @@ export default function Navbar() {
   const items = [
     { label: "Inicio", to: "/" },
     { label: "Categorías", action: handleCategoriesOpen },
-    { label: "Ofertas", to: "/ofertas" },
+    { label: "Destacado", to: "/destacado" },
     { label: "Contacto", to: "#footer" },
     { label: "Perfil", to: "/perfil" },
     { label: "Carrito", to: "/carrito" },
