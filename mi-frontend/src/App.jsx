@@ -15,6 +15,8 @@ import Politica from "./pages/PoliticaDatos";
 import Category from "./pages/Categories";
 // PRODUCTOS DETALLE
 import ProductDetail from "./pages/ProductDetail";
+// DESTACADO
+import Destacado from "./components/destacado";
 
 function App() {
   return (
@@ -60,6 +62,10 @@ function App() {
           {/* PRODUCTOS DETALLE */}
           <Route path="/producto/:id" element={
             <ProductDetail />
+          } />
+          {/* DESTACADO */}
+          <Route path="/destacado" element={
+            <Destacado />
           } />
         </Routes>
         <ScrollTopButton/>
