@@ -12,6 +12,13 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Categories from "./Categories";
 
 export default function Navbar() {
+  const handleScrollToFooter = () => {
+    const footer = document.getElementById("footer");
+    if (footer) {
+      footer.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const isMobile = useMediaQuery("(max-width:900px)");
 
   const [menuAnchor, setMenuAnchor] = useState(null);
@@ -30,7 +37,7 @@ export default function Navbar() {
     { label: "Inicio", to: "/" },
     { label: "Categorías", action: handleCategoriesOpen },
     { label: "Destacado", to: "/destacado" },
-    { label: "Contacto", to: "#footer" },
+    { label: "Contacto", action: handleScrollToFooter },
     { label: "Perfil", to: "/perfil" },
     { label: "Carrito", to: "/carrito" },
   ];
