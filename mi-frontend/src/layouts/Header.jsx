@@ -8,9 +8,20 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Navbar from "../components/Navbar";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Header() {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (query.trim()) {
+      // redirige a una ruta de búsqueda
+      navigate(`/buscar/${encodeURIComponent(query)}`);
+    }
+  };
+
   return (
     <>
       <AppBar position="fixed">
@@ -36,8 +47,14 @@ export default function Header() {
               maxWidth: 400,
             }}
           >
-            <InputBase placeholder="Buscar..." sx={{ ml: 1, flex: 1 }} />
-            <IconButton>
+            <InputBase
+              placeholder="Buscar..."
+              sx={{ ml: 1, flex: 1 }}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+            />
+            <IconButton onClick={handleSearch}>
               <SearchIcon />
             </IconButton>
           </Box>

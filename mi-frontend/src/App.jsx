@@ -17,6 +17,8 @@ import Category from "./pages/Categories";
 import ProductDetail from "./pages/ProductDetail";
 // DESTACADO
 import Destacado from "./components/destacado";
+// BUSCADOR
+import SearchResults from "./pages/SearchResults";
 
 function App() {
   return (
@@ -66,6 +68,10 @@ function App() {
           {/* DESTACADO */}
           <Route path="/destacado" element={
             <Destacado />
+          } />
+          {/* BUSCADOR */}
+          <Route path="/buscar/:query" element={
+            <SearchResults />
           } />
         </Routes>
         <ScrollTopButton/>
