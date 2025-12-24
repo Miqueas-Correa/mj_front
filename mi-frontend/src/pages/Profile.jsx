@@ -49,6 +49,10 @@ export default function Profile() {
                   Editar perfil
                 </Button>
 
+                <Button variant="outlined" color="secondary" component={RouterLink} to="/registro-pedidos">
+                  Registro de pedidos
+                </Button>
+
                 <Button variant="outlined" color="error" fullWidth onClick={logout}>
                   Cerrar sesión
                 </Button>

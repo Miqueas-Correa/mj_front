@@ -21,6 +21,9 @@ import Destacado from "./components/destacado";
 import SearchResults from "./pages/SearchResults";
 // CARRITO DE COMPRAS
 import ShoppingCart from "./pages/ShoppingCart";
+// PEDIDOS
+import Orders from "./pages/Orders";
+import OrderDetail from "./pages/OrderDetail";
 
 function App() {
   return (
@@ -78,6 +81,18 @@ function App() {
           {/* CARRITO DE COMPRAS */}
           <Route path="/carrito" element={
             <ShoppingCart />
+          } />
+          {/* REGISTRO DE PEDIDOS */}
+          <Route path="/registro-pedidos" element={
+            <ProtectedRoute>
+              <Orders />
+            </ProtectedRoute>
+          } />
+          {/* DETALLE DE PEDIDO */}
+          <Route path="/pedido/:id" element={
+            <ProtectedRoute>
+              <OrderDetail />
+            </ProtectedRoute>
           } />
         </Routes>
         <ScrollTopButton/>
