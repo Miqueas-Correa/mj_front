@@ -23,8 +23,11 @@ import {
   ArrowBack as ArrowBackIcon,
 } from "@mui/icons-material";
 import client from "../services/client";
+import { useCart } from "../hooks/useCart";
 
 export default function ProductDetail() {
+  const { addToCart } = useCart();
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -45,10 +48,9 @@ export default function ProductDetail() {
 
       try {
         const res = await client.get(`/productos/${id}`);
-        
-        // El backend devuelve un array con un producto
+
         const productoData = Array.isArray(res.data) ? res.data[0] : res.data;
-        
+
         if (!productoData) {
           setError("Producto no encontrado");
           return;
@@ -58,7 +60,7 @@ export default function ProductDetail() {
         document.title = `${productoData.nombre} - MJ STORE`;
       } catch (err) {
         console.error("Error cargando producto:", err);
-        
+
         if (err.response?.status === 404) {
           setError("Producto no encontrado");
         } else {
@@ -76,52 +78,50 @@ export default function ProductDetail() {
 
   const handleCantidadChange = (valor) => {
     const nuevaCantidad = cantidad + valor;
-    
+
     if (nuevaCantidad < 1) return;
     if (producto && nuevaCantidad > producto.stock) {
       setError(`Solo hay ${producto.stock} unidades disponibles`);
       setTimeout(() => setError(""), 3000);
       return;
     }
-    
+
     setCantidad(nuevaCantidad);
   };
 
   const handleCantidadInput = (e) => {
     const valor = parseInt(e.target.value);
-    
+
     if (isNaN(valor) || valor < 1) {
       setCantidad(1);
       return;
     }
-    
+
     if (producto && valor > producto.stock) {
       setCantidad(producto.stock);
       setError(`Solo hay ${producto.stock} unidades disponibles`);
       setTimeout(() => setError(""), 3000);
       return;
     }
-    
+
     setCantidad(valor);
   };
 
-  const handleAddToCart = async () => {
+  const handleAddToCart = () => {
     setAddingToCart(true);
     setError("");
-    
+
     try {
-      // TODO: Implementar lógica del carrito
-      // await client.post("/carrito", { productoId: producto.id, cantidad });
-      
-      // Simulación por ahora
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      setSuccessMessage(`¡${cantidad} ${cantidad === 1 ? 'unidad agregada' : 'unidades agregadas'} al carrito!`);
-      
+      // Agregar al carrito local
+      addToCart(producto, cantidad);
+
+      setSuccessMessage(
+        `¡${cantidad} ${cantidad === 1 ? "unidad agregada" : "unidades agregadas"} al carrito!`
+      );
+
       setTimeout(() => {
         setSuccessMessage("");
       }, 3000);
-      
     } catch (err) {
       setError("Error al agregar al carrito. Intenta nuevamente.", err);
     } finally {

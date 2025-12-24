@@ -19,6 +19,8 @@ import ProductDetail from "./pages/ProductDetail";
 import Destacado from "./components/destacado";
 // BUSCADOR
 import SearchResults from "./pages/SearchResults";
+// CARRITO DE COMPRAS
+import ShoppingCart from "./pages/ShoppingCart";
 
 function App() {
   return (
@@ -72,6 +74,10 @@ function App() {
           {/* BUSCADOR */}
           <Route path="/buscar/:query" element={
             <SearchResults />
+          } />
+          {/* CARRITO DE COMPRAS */}
+          <Route path="/carrito" element={
+            <ShoppingCart />
           } />
         </Routes>
         <ScrollTopButton/>

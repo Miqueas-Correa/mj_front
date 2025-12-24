@@ -7,9 +7,11 @@ import {
   Button
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../hooks/useCart";
 
 function ProductCard({ producto }) {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   if (!producto) return null;
   return (
     <Card
@@ -53,7 +55,8 @@ function ProductCard({ producto }) {
             onClick={() => navigate(`/producto/${producto.id}`)}>
             Ver
           </Button>
-          <Button size="small" variant="outlined" fullWidth>
+          <Button size="small" variant="outlined" fullWidth
+            onClick={() => addToCart(producto)}>
             Añadir
           </Button>
         </CardActions>
