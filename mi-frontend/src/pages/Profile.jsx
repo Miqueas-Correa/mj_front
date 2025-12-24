@@ -1,9 +1,10 @@
 import { Box, Card, CardContent, Typography, Button, Stack } from "@mui/material";
 import { useAuth } from "../hooks/useAuth";
-import { Link as RouterLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <Box sx={{ p: 3, display: "flex", justifyContent: "center" }}>
@@ -19,11 +20,11 @@ export default function Profile() {
                 No has iniciado sesión. Inicia sesión o crea una cuenta.
               </Typography>
 
-              <Button variant="contained" fullWidth component={RouterLink} to="/login">
+              <Button variant="contained" fullWidth onClick={() => navigate("/login")}>
                 Iniciar sesión
               </Button>
 
-              <Button variant="outlined" fullWidth component={RouterLink} to="/register">
+              <Button variant="outlined" fullWidth onClick={() => navigate("/register")}>
                 Crear cuenta
               </Button>
             </Stack>
@@ -45,13 +46,19 @@ export default function Profile() {
               </Box>
 
               <Stack spacing={2} mt={2}>
-                <Button variant="contained" component={RouterLink} to="/editar-perfil">
+                <Button variant="contained" onClick={() => navigate("/editar-perfil")}>
                   Editar perfil
                 </Button>
 
-                <Button variant="outlined" color="secondary" component={RouterLink} to="/registro-pedidos">
+                <Button variant="outlined" color="secondary" onClick={() => navigate("/registro-pedidos")}>
                   Registro de pedidos
                 </Button>
+
+                {user.rol === "admin" && (
+                  <Button variant="outlined" color="secondary" onClick={() => navigate("/admin")}>
+                    Panel de administración
+                  </Button>
+                )}
 
                 <Button variant="outlined" color="error" fullWidth onClick={logout}>
                   Cerrar sesión
