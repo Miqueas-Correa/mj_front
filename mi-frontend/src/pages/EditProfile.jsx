@@ -158,7 +158,7 @@ export default function EditProfile() {
   // Manejar envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Limpiar mensajes anteriores
     setError("");
     setSuccess("");
@@ -182,13 +182,11 @@ export default function EditProfile() {
     const dataToSend = getDataToSend();
 
     try {
-      // Enviar petición al backend
-      const response = await client.put("/usuarios/me", dataToSend);
+      await client.put("/usuarios/me", dataToSend);
 
       const fieldsCount = Object.keys(dataToSend).length;
       const fieldsNames = Object.keys(dataToSend).join(", ");
 
-      // Recargar datos del usuario si la función existe
       if (reloadUser) {
         try {
           await reloadUser();
@@ -199,7 +197,7 @@ export default function EditProfile() {
 
       // Esperar un tick para que React termine de procesar
       await new Promise(resolve => setTimeout(resolve, 0));
-      
+
       setLoading(false);
       setSuccess(
         `¡Perfil actualizado exitosamente! Se ${
