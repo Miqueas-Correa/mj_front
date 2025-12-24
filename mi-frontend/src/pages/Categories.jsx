@@ -60,11 +60,6 @@ export default function Category() {
     }
   }, [cat]);
 
-  useEffect(() => {
-    // Cambiar título de la pestaña
-    document.title = cat ? `${capitalize(cat)} - MJ STORE` : "Categorías - MJ STORE";
-  }, [cat]);
-
   if (loading) {
     return (
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "60vh" }}>
