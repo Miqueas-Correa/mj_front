@@ -9,6 +9,12 @@ import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import EditProfile from "./pages/EditProfile";
+// ADMIN PANEL
+import AdminRoute from "./routes/AdminRoute";
+import AdminPanel from "./pages/AdminPanel";
+import AdminOrders from "./pages/AdminOrders";
+import AdminUsers from "./pages/AdminUsers";
+import AdminProducts from "./pages/AdminProducts";
 // PILITICA DE DATOS
 import Politica from "./pages/PoliticaDatos";
 // CATEGORIAS
@@ -56,6 +62,36 @@ function App() {
               <EditProfile />
             </ProtectedRoute>
           } />
+          {/* ADMIN PANEL */}
+          <Route path="/admin" element={
+            <ProtectedRoute adminOnly={true}>
+              <AdminPanel />
+            </ProtectedRoute>
+          } />
+          <Route
+            path="/admin/pedidos"
+            element={
+              <AdminRoute>
+                <AdminOrders />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/usuarios"
+            element={
+              <AdminRoute>
+                <AdminUsers />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/productos"
+            element={
+              <AdminRoute>
+                <AdminProducts />
+              </AdminRoute>
+            }
+          />
           {/* POLITICA DE DATOS */}
           <Route path="/politica" element={
             <PublicRoute>
