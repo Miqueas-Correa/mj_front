@@ -15,6 +15,7 @@ import AdminPanel from "./pages/AdminPanel";
 import AdminOrders from "./pages/AdminOrders";
 import AdminUsers from "./pages/AdminUsers";
 import AdminProducts from "./pages/AdminProducts";
+import AdminOrderDetail from "./pages/AdminOrderDetail";
 // PILITICA DE DATOS
 import Politica from "./pages/PoliticaDatos";
 // CATEGORIAS
@@ -89,6 +90,14 @@ function App() {
             element={
               <AdminRoute>
                 <AdminProducts />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/pedido/:id"
+            element={
+              <AdminRoute>
+                <AdminOrderDetail />
               </AdminRoute>
             }
           />

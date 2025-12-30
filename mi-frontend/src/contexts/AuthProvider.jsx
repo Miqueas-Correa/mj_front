@@ -25,7 +25,7 @@ export default function AuthProvider({ children }) {
     await loadUser();
   };
 
-  // 👤 CARGAR USUARIO
+  // CARGAR USUARIO
   const loadUser = async () => {
     try {
       const res = await client.get("/usuarios/me");
