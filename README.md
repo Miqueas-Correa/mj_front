@@ -23,35 +23,24 @@ CSS / Theme personalizado
 
 📁 Estructura del Proyecto
 
-mi-frontend/
-
-│
-
-├── public/
-
-│   └── vite.svg
-
-│
-
-├── src/
-
-│   ├── assets/
-
-│   │   ├── icons/
-
-│   │   │   └── logo_mj.png
-
-│   │   └── react.svg
-
-│   │
-
-│   ├── components/
-│   │   ├── Carrusel.jsx
-│   │   ├── Categories.jsx
-│   │   ├── Destacado.jsx
-│   │   ├── Navbar.jsx
-│   │   ├── ProductCard.jsx
-│   │   ├── ProductFrom.jsx
+- mi-frontend/
+- │
+- ├── public/
+- │   └── vite.svg
+- │
+- ├── src/
+- │   ├── assets/
+- │   │   ├── icons/
+- │   │   │   └── logo_mj.png
+- │   │   └── react.svg
+- │   │
+- │   ├── components/
+- │   │   ├── Carrusel.jsx
+- │   │   ├── Categories.jsx
+- │   │   ├── Destacado.jsx
+- │   │   ├── Navbar.jsx
+- │   │   ├── ProductCard.jsx
+- │   │   ├── ProductFrom.jsx
 │   │   ├── Products.jsx
 │   │   └── ScrollTopButton.jsx
 │   │
