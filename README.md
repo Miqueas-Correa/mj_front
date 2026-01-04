@@ -41,66 +41,66 @@ CSS / Theme personalizado
 - │   │   ├── Navbar.jsx
 - │   │   ├── ProductCard.jsx
 - │   │   ├── ProductFrom.jsx
-│   │   ├── Products.jsx
-│   │   └── ScrollTopButton.jsx
-│   │
-│   ├── contexts/
-│   │   ├── AuthContext.js
-│   │   ├── AuthProvider.jsx
-│   │   ├── CartContext.jsx
-│   │   └── CartProvider.jsx
-│   │
-│   ├── hooks/
-│   │   ├── useAuth.js
-│   │   ├── useCart.js
-│   │   └── useProduct.js
-│   │
-│   ├── layouts/
-│   │   ├── Footer.jsx
-│   │   ├── Header.jsx
-│   │   └── MainLayout.jsx
-│   │
-│   ├── pages/
-│   │   ├── AdminOrderDetail.jsx
-│   │   ├── AdminOrders.jsx
-│   │   ├── AdminPanel.jsx
-│   │   ├── AdminProducts.jsx
-│   │   ├── AdminUsers.jsx
-│   │   ├── Categories.jsx
-│   │   ├── EditProfile.jsx
-│   │   ├── Home.jsx
-│   │   ├── Login.jsx
-│   │   ├── OrderDetail.jsx
-│   │   ├── Orders.jsx
-│   │   ├── PoliticaDatos.jsx
-│   │   ├── ProductDetail.jsx
-│   │   ├── Profile.jsx
-│   │   ├── Register.jsx
-│   │   ├── RegisterPage.jsx
-│   │   ├── SearchResults.jsx
-│   │   └── ShoppingCart.jsx
-│   │
-│   ├── routes/
-│   │   ├── AdminRoute.jsx
-│   │   ├── ProtectedRoute.jsx
-│   │   └── PublicRoute.jsx
-│   │
-│   ├── services/
-│   │   ├── client.js
-│   │   └── adminClient.js
-│   │
-│   ├── utils/
-│   │   └── theme.js
-│   │
-│   ├── App.jsx
-│   └── main.jsx
-│
-├── index.html
-├── package.json
-├── package-lock.json
-├── vite.config.js
-├── eslint.config.js
-└── README.md
+- │   │   ├── Products.jsx
+- │   │   └── ScrollTopButton.jsx
+- │   │
+- │   ├── contexts/
+- │   │   ├── AuthContext.js
+- │   │   ├── AuthProvider.jsx
+- │   │   ├── CartContext.jsx
+- │   │   └── CartProvider.jsx
+- │   │
+- │   ├── hooks/
+- │   │   ├── useAuth.js
+- │   │   ├── useCart.js
+- │   │   └── useProduct.js
+- │   │
+- │   ├── layouts/
+- │   │   ├── Footer.jsx
+- │   │   ├── Header.jsx
+- │   │   └── MainLayout.jsx
+- │   │
+- │   ├── pages/
+- │   │   ├── AdminOrderDetail.jsx
+- │   │   ├── AdminOrders.jsx
+- │   │   ├── AdminPanel.jsx
+- │   │   ├── AdminProducts.jsx
+- │   │   ├── AdminUsers.jsx
+- │   │   ├── Categories.jsx
+- │   │   ├── EditProfile.jsx
+- │   │   ├── Home.jsx
+- │   │   ├── Login.jsx
+- │   │   ├── OrderDetail.jsx
+- │   │   ├── Orders.jsx
+- │   │   ├── PoliticaDatos.jsx
+- │   │   ├── ProductDetail.jsx
+- │   │   ├── Profile.jsx
+- │   │   ├── Register.jsx
+- │   │   ├── RegisterPage.jsx
+- │   │   ├── SearchResults.jsx
+- │   │   └── ShoppingCart.jsx
+- │   │
+- │   ├── routes/
+- │   │   ├── AdminRoute.jsx
+- │   │   ├── ProtectedRoute.jsx
+- │   │   └── PublicRoute.jsx
+- │   │
+- │   ├── services/
+- │   │   ├── client.js
+- │   │   └── adminClient.js
+- │   │
+- │   ├── utils/
+- │   │   └── theme.js
+- │   │
+- │   ├── App.jsx
+- │   └── main.jsx
+- │
+- ├── index.html
+- ├── package.json
+- ├── package-lock.json
+- ├── vite.config.js
+- ├── eslint.config.js
+- └── README.md
 
 ## Instalación y Ejecución
 1️⃣ Clonar el repositorio
