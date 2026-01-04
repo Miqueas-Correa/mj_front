@@ -22,17 +22,29 @@ CSS / Theme personalizado
 ## Arquitectura por componentes
 
 📁 Estructura del Proyecto
+
 mi-frontend/
+
 │
+
 ├── public/
+
 │   └── vite.svg
+
 │
+
 ├── src/
+
 │   ├── assets/
+
 │   │   ├── icons/
+
 │   │   │   └── logo_mj.png
+
 │   │   └── react.svg
+
 │   │
+
 │   ├── components/
 │   │   ├── Carrusel.jsx
 │   │   ├── Categories.jsx
