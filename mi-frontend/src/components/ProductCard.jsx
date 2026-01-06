@@ -16,7 +16,7 @@ function ProductCard({ producto }) {
   return (
     <Card
       sx={{
-        maxWidth: 250,
+        maxWidth: 220,
         borderRadius: 3,
         boxShadow: 3,
         transition: "0.2s",
@@ -28,7 +28,7 @@ function ProductCard({ producto }) {
     >
       <CardMedia
         component="img"
-        height="120"
+        height="80"
         image={producto.imagen_url || "https://via.placeholder.com/200"}
         alt={producto.nombre}
         sx={{ objectFit: "contain", p: 1, background: "primary.main" }}

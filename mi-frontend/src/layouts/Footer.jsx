@@ -18,7 +18,7 @@ export default function Footer() {
         <Link href="https://www.instagram.com/__m.j__2024/" color="inherit">
           @__m.j__2024
         </Link> -{" "}
-        <Link href="https://portafolio-web-miqueas.vercel.app/#inicio" color="inherit">
+        <Link href="https://www.linkedin.com/in/miqueas-correa-4a1509318/" color="inherit">
           Programador Correa Miqueas ✔
         </Link>
       </p>
