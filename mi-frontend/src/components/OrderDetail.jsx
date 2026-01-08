@@ -1,3 +1,5 @@
+// OrderDetail.jsx - Componente actualizado con cancelación de pedidos
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
@@ -59,7 +61,6 @@ export default function OrderDetail() {
 
         setPedido(pedidoEncontrado);
 
-        // Obtener información de los productos
         const productosPromises = pedidoEncontrado.detalles.map(async (detalle) => {
           try {
             const resProducto = await client.get(`/productos/${detalle.producto_id}`);
@@ -155,7 +156,7 @@ export default function OrderDetail() {
 
   return (
     <Box sx={{ p: 3, maxWidth: 1000, mx: "auto" }}>
-      {/* Botón volver */}
+      {/* Header con botones */}
       <Stack direction="row" justifyContent="space-between" alignItems="center" mb={3}>
         <Button
           variant="text"
@@ -165,7 +166,6 @@ export default function OrderDetail() {
           Volver a mis pedidos
         </Button>
 
-        {/* Botón cancelar pedido (solo si no está cerrado) */}
         {!pedido.cerrado && (
           <Button
             variant="outlined"
@@ -178,7 +178,7 @@ export default function OrderDetail() {
         )}
       </Stack>
 
-      {/* Información del pedido */}
+      {/* Card principal del pedido */}
       <Card sx={{ borderRadius: 3, boxShadow: 3, mb: 3 }}>
         <CardContent sx={{ p: 4 }}>
           <Stack direction="row" justifyContent="space-between" alignItems="start" mb={3}>
@@ -223,7 +223,6 @@ export default function OrderDetail() {
 
           <Divider sx={{ my: 3 }} />
 
-          {/* Tabla de productos */}
           <Typography variant="h6" fontWeight="bold" gutterBottom>
             Productos
           </Typography>
@@ -294,7 +293,6 @@ export default function OrderDetail() {
             </Table>
           </TableContainer>
 
-          {/* Resumen de totales */}
           <Box sx={{ mt: 4, display: "flex", justifyContent: "flex-end" }}>
             <Box sx={{ minWidth: 300 }}>
               <Stack spacing={2}>
