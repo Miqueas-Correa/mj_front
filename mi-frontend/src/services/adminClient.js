@@ -1,10 +1,9 @@
 import axios from "axios";
 
 const adminClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000",
+  baseURL: import.meta.env.VITE_API_BASE_URL,
 });
 
-// Configurar token de autorización
 export const setAuthToken = (token) => {
   if (token) {
     adminClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -13,7 +12,6 @@ export const setAuthToken = (token) => {
   }
 };
 
-// Interceptor para agregar automáticamente el token del localStorage
 adminClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -22,12 +20,9 @@ adminClient.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// Interceptor de respuesta para manejar errores de autenticación
 adminClient.interceptors.response.use(
   (res) => res,
   async (error) => {
@@ -40,7 +35,7 @@ adminClient.interceptors.response.use(
         const refresh = localStorage.getItem("refresh");
 
         const res = await axios.post(
-          `${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}/auth/refresh`,
+          `${import.meta.env.VITE_API_BASE_URL}/auth/refresh`,
           {},
           {
             headers: {
@@ -57,17 +52,14 @@ adminClient.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${token}`;
 
         return adminClient(originalRequest);
-      } catch (refreshError) {
+      } catch {
         localStorage.clear();
         window.location.href = "/login";
-        return Promise.reject(refreshError);
       }
     }
 
-    // Si es 403 (Forbidden), el usuario no es admin
     if (error.response?.status === 403) {
       window.location.href = "/perfil";
-      return Promise.reject(error);
     }
 
     return Promise.reject(error);

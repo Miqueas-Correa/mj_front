@@ -110,13 +110,16 @@ cd mi-frontend
 2️⃣ Instalar dependencias
 npm install
 
+Variable de entorno:
+VITE_API_BASE_URL=mjapi-production.up.railway.app
+
 3️⃣ Ejecutar en entorno de desarrollo
 npm run dev
 
 
 La aplicación estará disponible en:
 
-http://localhost:5173
+https://mj-front-ehdtra4z0-miqueas-correas-projects.vercel.app
 
 🔐 Sistema de Rutas
 
