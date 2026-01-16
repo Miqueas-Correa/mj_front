@@ -6,7 +6,6 @@ if (!baseURL) {
 }
 
 const client = axios.create({ baseURL });
-console.log("BASE URL:", baseURL);
 
 export const setAuthToken = (token) => {
   if (token) {
