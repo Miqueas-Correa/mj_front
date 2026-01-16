@@ -1,8 +1,12 @@
 import axios from "axios";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
-const client = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
-});
+if (!baseURL) {
+  throw new Error("VITE_API_BASE_URL no está definido");
+}
+
+const client = axios.create({ baseURL });
+
 
 export const setAuthToken = (token) => {
   if (token) {

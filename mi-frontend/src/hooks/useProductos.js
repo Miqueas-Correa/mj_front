@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import client from "../services/client";
 
 export function useProductos(mostrar = true, extraRoute = "") {
-  console.log("API BASE:", import.meta.env.VITE_API_BASE_URL);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
