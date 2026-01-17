@@ -113,7 +113,7 @@ npm install
 Variable de entorno:
 VITE_API_BASE_URL=mjapi-production.up.railway.app
 
-3️⃣ Ejecutar en entorno de desarrollo
+3️⃣ Ejecutar en entorno de desarrollo, tener en cuenta que se tiene que ejecutar en la ubicacion de /mi-frontend
 npm run dev
 
 
