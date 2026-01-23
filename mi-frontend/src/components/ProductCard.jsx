@@ -17,6 +17,9 @@ function ProductCard({ producto }) {
     <Card
       sx={{
         maxWidth: 220,
+        height: 420, // altura fija para todas las tarjetas
+        display: "flex",
+        flexDirection: "column",
         borderRadius: 3,
         boxShadow: 3,
         transition: "0.2s",
@@ -33,14 +36,15 @@ function ProductCard({ producto }) {
         alt={producto.nombre}
         sx={{ objectFit: "contain", p: 1, background: "primary.main" }}
       />
-      <CardContent>
+      <CardContent sx={{ flexGrow: 1, pb: 0 }}>
         <Typography 
           variant="h6" 
           fontWeight="bold"
           sx={{
             overflow: "hidden",
             textOverflow: "ellipsis",
-            whiteSpace: "nowrap"
+            whiteSpace: "nowrap",
+            mb: 1
           }}
         >
           {producto.nombre}
@@ -49,38 +53,45 @@ function ProductCard({ producto }) {
           variant="body2" 
           color="secondary.main" 
           sx={{ 
-            minHeight: 48,
+            height: 40, // altura fija
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
-            WebkitLineClamp: 2,
+            WebkitLineClamp: 2, // máximo 2 líneas
             WebkitBoxOrient: "vertical",
-            whiteSpace: "normal"
+            mb: 1
           }}
         >
           {producto.descripcion}
         </Typography>
-        <Typography variant="h6" color="primary.main" sx={{ mt: 1, fontWeight: "bold" }}>
+        <Typography variant="h6" color="primary.main" sx={{ fontWeight: "bold", mb: 1 }}>
           ${producto.precio ?? "0"}
         </Typography>
-        <Typography variant="body2" sx={{ mt: 1 }}>
+        <Typography 
+          variant="body2" 
+          sx={{ 
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap"
+          }}
+        >
           {producto.categoria}
         </Typography>
         <Typography variant="body2">
           Stock: {producto.stock}
         </Typography>
-
-        <CardActions>
-          <Button size="small" variant="contained" fullWidth
-            onClick={() => navigate(`/producto/${producto.id}`)}>
-            Ver
-          </Button>
-          <Button size="small" variant="outlined" fullWidth
-            onClick={() => addToCart(producto)}>
-            Añadir
-          </Button>
-        </CardActions>
       </CardContent>
+
+      <CardActions sx={{ p: 2, pt: 0 }}>
+        <Button size="small" variant="contained" fullWidth
+          onClick={() => navigate(`/producto/${producto.id}`)}>
+          VER
+        </Button>
+        <Button size="small" variant="outlined" fullWidth
+          onClick={() => addToCart(producto)}>
+          AÑADIR
+        </Button>
+      </CardActions>
     </Card>
   );
 }
