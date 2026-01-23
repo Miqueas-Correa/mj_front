@@ -17,7 +17,7 @@ function ProductCard({ producto }) {
     <Card
       sx={{
         maxWidth: 220,
-        height: 420, // altura fija para todas las tarjetas
+        height: 320,
         display: "flex",
         flexDirection: "column",
         borderRadius: 3,
@@ -36,7 +36,7 @@ function ProductCard({ producto }) {
         alt={producto.nombre}
         sx={{ objectFit: "contain", p: 1, background: "primary.main" }}
       />
-      <CardContent sx={{ flexGrow: 1, pb: 0 }}>
+      <CardContent sx={{ flexGrow: 1, p: 2, pb: 1 }}>
         <Typography 
           variant="h6" 
           fontWeight="bold"
@@ -44,7 +44,7 @@ function ProductCard({ producto }) {
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
-            mb: 1
+            mb: 0.5
           }}
         >
           {producto.nombre}
@@ -53,18 +53,18 @@ function ProductCard({ producto }) {
           variant="body2" 
           color="secondary.main" 
           sx={{ 
-            height: 40, // altura fija
+            height: 38,
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
-            WebkitLineClamp: 2, // máximo 2 líneas
+            WebkitLineClamp: 2,
             WebkitBoxOrient: "vertical",
             mb: 1
           }}
         >
           {producto.descripcion}
         </Typography>
-        <Typography variant="h6" color="primary.main" sx={{ fontWeight: "bold", mb: 1 }}>
+        <Typography variant="h6" color="primary.main" sx={{ fontWeight: "bold", mb: 0.5 }}>
           ${producto.precio ?? "0"}
         </Typography>
         <Typography 
@@ -72,7 +72,8 @@ function ProductCard({ producto }) {
           sx={{ 
             overflow: "hidden",
             textOverflow: "ellipsis",
-            whiteSpace: "nowrap"
+            whiteSpace: "nowrap",
+            mb: 0.5
           }}
         >
           {producto.categoria}
