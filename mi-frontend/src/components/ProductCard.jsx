@@ -34,10 +34,30 @@ function ProductCard({ producto }) {
         sx={{ objectFit: "contain", p: 1, background: "primary.main" }}
       />
       <CardContent>
-        <Typography variant="h6" fontWeight="bold">
+        <Typography 
+          variant="h6" 
+          fontWeight="bold"
+          sx={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap"
+          }}
+        >
           {producto.nombre}
         </Typography>
-        <Typography variant="body2" color="secondary.main" sx={{ minHeight: 48 }}>
+        <Typography 
+          variant="body2" 
+          color="secondary.main" 
+          sx={{ 
+            minHeight: 48,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            whiteSpace: "normal"
+          }}
+        >
           {producto.descripcion}
         </Typography>
         <Typography variant="h6" color="primary.main" sx={{ mt: 1, fontWeight: "bold" }}>
