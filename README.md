@@ -119,7 +119,7 @@ npm run dev
 
 La aplicación estará disponible en:
 
-https://mj-front-git-main-miqueas-correas-projects.vercel.app?_vercel_share=Ljlh4Qc9run5j01PSzTfV3VuroCPe7NS
+[MJ WEB](https://mj-store-nine.vercel.app)
 
 🔐 Sistema de Rutas
 
