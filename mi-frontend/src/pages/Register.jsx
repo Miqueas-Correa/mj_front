@@ -37,7 +37,7 @@ export default function Register() {
     }
 
     try {
-      const { data } = await client.post("/usuarios", form);
+      const { data } = await client.post("/auth/register", form);
 
       alert(data.mensaje || "Cuenta creada con éxito");
 
